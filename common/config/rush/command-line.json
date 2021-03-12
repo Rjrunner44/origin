@@ -63,6 +63,15 @@
             "autoinstallerName": "rush-tools",
             "shellCommand": "lerna run test:e2e --stream --ignore @energyweb/exchange-irec && lerna run test:e2e --stream --scope @energyweb/exchange-irec",
             "allowWarningsInSuccessfulBuild": true
+        },
+        {
+            "commandKind": "bulk",
+            "name": "build:container:canary",
+            "summary": "Deploys in container",
+            "safeForSimultaneousRushProcesses": false,
+            "enableParallelism": true,
+            "ignoreMissingScript": true,
+            "allowWarningsInSuccessfulBuild": true
         }
         // {
         //   /**

@@ -10,7 +10,14 @@ build-local:
 	@docker build -t ${NAME}:local -f Dockerfile.local ../../
 
 build-canary:
-	@docker build -t ${NAME}:${TAG_CANARY} --build-arg VERSION=${TAG_CANARY} .
+	# @docker build -t ${NAME}:${TAG_CANARY} --build-arg VERSION=${TAG_CANARY} .
+	# @docker tag ${NAME}:${TAG_CANARY} ${CANARY}
+	@rm -rf ./deployment
+	@mkdir ./deployment
+	@rush deploy -p @energyweb/origin-backend-irec-app -t ./deployment --overwrite
+	@docker rmi ${CANARY} -f
+	@docker build -t ${NAME}:${TAG_CANARY} --build-arg VERSION=${TAG_CANARY} -f Dockerfile.local ./deployment
+	@rm -rf ./deployment
 	@docker tag ${NAME}:${TAG_CANARY} ${CANARY}
 
 build-latest:
