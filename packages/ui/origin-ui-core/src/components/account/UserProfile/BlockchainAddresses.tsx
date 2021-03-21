@@ -15,6 +15,7 @@ import {
 import { useValidation } from '../../../utils/validation';
 import { FormInput } from '../../Form';
 import { IconPopover, IconSize } from '../../Icons';
+import * as ethers from 'ethers';
 
 export function BlockchainAddresses(): JSX.Element {
     const { Yup } = useValidation();
@@ -35,7 +36,13 @@ export function BlockchainAddresses(): JSX.Element {
     const VALIDATION_SCHEMA = Yup.object().shape({
         blockchainAccountAddress: Yup.string()
             .label(t('user.properties.blockchainAddress'))
-            .required()
+            .test(
+                t('user.properties.blockchainAddress'),
+                t('user.validationMessages.invalidBlockchainAddress'),
+                function (value) {
+                    return ethers.utils.isAddress(value);
+                }
+            )
     });
 
     const INITIAL_VALUES = {

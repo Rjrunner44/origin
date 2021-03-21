@@ -6,10 +6,11 @@
         "moduleResolution": "node",
         "declaration": true,
         "noImplicitAny": false,
+        "resolveJsonModule": true,
         "composite": true,
         "types": ["jest"]
     },
-    "include": ["./src/**/*"],
+    "include": ["./src/**/*", "./env-config.json"],
     "references": [
         {
             "path": "../../utils/utils-general/tsconfig.json"

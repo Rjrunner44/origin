@@ -14,6 +14,7 @@ REQUIRED_VARIABLES=(
   GOOGLE_MAPS_API_KEY
   MARKET_UTC_OFFSET
   SMART_METER_ID
+  AUTO_CONFIRM_USER_REGISTRATION
 )
 
 # Recreate config file
@@ -24,7 +25,7 @@ touch ./env-config.json
 echo "{" >> ./env-config.json
 
 envToRead=.env
-rootEnvFile=../../.env
+rootEnvFile=../../../.env
 if [ ! -e "$envToRead" ]; then
     envToRead=$rootEnvFile
 fi
